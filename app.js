@@ -23,3 +23,8 @@ toolBar.appendTo('._container');
 dc.appendTo('._container');
 dcOverlay.appendTo('._container');
 dcOverlay.canvas.style.marginTop = -height + 'px';
+
+dcOverlay.fillText('Notice:', 10, 70);
+dcOverlay.fillText('The application functionality', 10, 100);
+dcOverlay.fillText('is currently available only on', 10, 130);
+dcOverlay.fillText('devices without a touchscreen', 10, 160);

@@ -4,11 +4,6 @@ export function startDrawingTrapezoid(dc, dcOverlay) {
     const { canvas } = dcOverlay;
 
     return () => {
-        dcOverlay.fillText('Notice:', 10, 70);
-        dcOverlay.fillText('The trapezoid building functionality', 10, 100);
-        dcOverlay.fillText('is currently available only on', 10, 130);
-        dcOverlay.fillText('devices without a touchscreen', 10, 160);
-
         const start = (canvas.onmousedown = (e1) => {
             window.onmousemove = (e2) => {
                 dcOverlay.clear();
