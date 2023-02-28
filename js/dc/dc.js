@@ -6,6 +6,7 @@ export default class DrawingCanvas {
         this.canvas.width = width;
         this.canvas.height = height;
         this.canvas.style.display = 'block';
+        this.canvas.style.pointerEvents = 'all';
         this.ctx = this.canvas.getContext('2d');
 
         if (bgColor) {
@@ -121,5 +122,12 @@ export default class DrawingCanvas {
         this.ctx.moveTo(x1, y1);
         this.ctx.lineTo(x2, y2);
         this.ctx.stroke();
+    }
+
+    fillText(text, x, y) {
+        this.ctx.font = '16px Arial';
+        this.ctx.fillStyle = 'lightblue';
+        this.ctx.maxWidth = 50;
+        this.ctx.fillText(text, x, y);
     }
 }
