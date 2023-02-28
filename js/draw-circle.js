@@ -1,12 +1,10 @@
-export { startDrawingCircle };
+import { getColors } from './color-picker.js';
 
-function startDrawingCircle(dc, dcOverlay) {
+export function startDrawingCircle(dc, dcOverlay) {
     const { canvas } = dcOverlay;
 
     return () => {
         canvas.onmousedown = (e1) => {
-            const color = `hsl(${Math.random() * 360}, 75%, 60%)`;
-
             window.onmousemove = (e2) => {
                 const dx = e2.offsetX - e1.offsetX;
                 const dy = e2.offsetY - e1.offsetY;
@@ -17,7 +15,7 @@ function startDrawingCircle(dc, dcOverlay) {
                     x: e1.offsetX,
                     y: e1.offsetY,
                     radius,
-                    color,
+                    color: 'grey',
                     thickness: 1,
                 });
             };
@@ -36,7 +34,7 @@ function startDrawingCircle(dc, dcOverlay) {
                     x: e1.offsetX,
                     y: e1.offsetY,
                     radius,
-                    color,
+                    color: getColors(),
                 });
             };
         };

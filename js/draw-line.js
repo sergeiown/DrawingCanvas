@@ -1,6 +1,6 @@
-export { startDrawingLine };
+import { getColors } from './color-picker.js';
 
-function startDrawingLine(dc, dcOverlay) {
+export function startDrawingLine(dc, dcOverlay, color) {
     const { canvas } = dcOverlay;
 
     return () => {
@@ -14,7 +14,7 @@ function startDrawingLine(dc, dcOverlay) {
                     x2: e2.offsetX,
                     y2: e2.offsetY,
                     thickness: 1,
-                    color: "grey",
+                    color: 'grey',
                 });
             };
 
@@ -28,7 +28,7 @@ function startDrawingLine(dc, dcOverlay) {
                     x2: e2.offsetX,
                     y2: e2.offsetY,
                     thickness: 3,
-                    color: "white",
+                    color: getColors(),
                 });
 
                 dcOverlay.clear();
