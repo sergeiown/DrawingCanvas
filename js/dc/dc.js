@@ -5,6 +5,7 @@ export default class DrawingCanvas {
         this.canvas = document.createElement('canvas');
         this.canvas.width = width;
         this.canvas.height = height;
+        this.canvas.style.display = 'block';
         this.ctx = this.canvas.getContext('2d');
 
         if (bgColor) {
