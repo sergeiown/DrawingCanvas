@@ -6,7 +6,7 @@ export default class ToolBar {
         this.bar.style.justifyContent = 'center';
         this.bar.style.gap = '10px';
         this.bar.style.listStyle = 'none';
-        this.bar.style.padding = '0';
+        this.bar.style.padding = '10px 0 0 0';
         this.bar.style.margin = '0';
         this.bar.style.background = '#2a2c35';
 
