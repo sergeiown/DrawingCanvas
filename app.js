@@ -4,7 +4,7 @@ import ToolBar from './js/toolbar.js';
 import { startDrawingLine } from './js/draw-line.js';
 import { startDrawingTrapezoid } from './js/draw-trapezoid.js';
 import { startDrawingRectangle } from './js/draw-rectangle.js';
-import { startDrawingCircle, startDrawingCircleTouch } from './js/draw-circle.js';
+import { startDrawingCircle } from './js/draw-circle.js';
 import { startDrawingPolygon } from './js/draw-polygon.js';
 
 if ('ontouchstart' in window) {
@@ -13,7 +13,7 @@ if ('ontouchstart' in window) {
     const toolBar = new ToolBar({
         Clear: { handler: () => dc.clear() },
         Line: { handler: startDrawingLine(dc, dcOverlay) },
-        Circle: { handler: startDrawingCircleTouch(dc, dcOverlay) },
+        Circle: { handler: startDrawingCircle(dc, dcOverlay) },
         Rectangle: { handler: startDrawingRectangle(dc, dcOverlay) },
         Trapezoid: { handler: startDrawingTrapezoid(dc, dcOverlay) },
         Poligon: { handler: startDrawingPolygon(dc, dcOverlay) },
