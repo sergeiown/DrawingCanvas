@@ -37,63 +37,45 @@ export function startDrawingLine(dc, dcOverlay) {
     };
 }
 
-/* export function startDrawingLine(dc, dcOverlay) {
+export function startDrawingLineTouch(dc, dcOverlay) {
     const { canvas } = dcOverlay;
 
     return () => {
-        function handlePointerDown(e1) {
-            canvas.setPointerCapture(e1.pointerId);
+        canvas.ontouchstart = (e1) => {
+            const touch = e1.touches[0];
 
-            canvas.addEventListener('pointermove', handlePointerMove);
-            canvas.addEventListener('pointerup', handlePointerUp);
-            canvas.addEventListener('pointercancel', handlePointerCancel);
+            canvas.ontouchmove = (e2) => {
+                const touch = e2.touches[0];
 
-            const startX = e1.offsetX;
-            const startY = e1.offsetY;
-
-            function handlePointerMove(e2) {
                 dcOverlay.clear();
 
                 dcOverlay.line({
-                    x1: startX,
-                    y1: startY,
-                    x2: e2.offsetX,
-                    y2: e2.offsetY,
+                    x1: touch.pageX - canvas.offsetLeft,
+                    y1: touch.pageY - canvas.offsetTop,
+                    x2: touch.pageX - canvas.offsetLeft,
+                    y2: touch.pageY - canvas.offsetTop,
                     thickness: 1,
                     color: 'grey',
                 });
-            }
+            };
 
-            function handlePointerUp(e2) {
-                canvas.removeEventListener('pointermove', handlePointerMove);
-                canvas.removeEventListener('pointerup', handlePointerUp);
-                canvas.removeEventListener('pointercancel', handlePointerCancel);
+            canvas.ontouchend = (e2) => {
+                const touch = e2.changedTouches[0];
+
+                canvas.ontouchmove = null;
+                canvas.ontouchend = null;
 
                 dc.line({
-                    x1: startX,
-                    y1: startY,
-                    x2: e2.offsetX,
-                    y2: e2.offsetY,
+                    x1: touch.pageX - canvas.offsetLeft,
+                    y1: touch.pageY - canvas.offsetTop,
+                    x2: touch.pageX - canvas.offsetLeft,
+                    y2: touch.pageY - canvas.offsetTop,
                     thickness: 3,
                     color: getColors(),
                 });
 
                 dcOverlay.clear();
-            }
-
-            function handlePointerCancel(e2) {
-                canvas.removeEventListener('pointermove', handlePointerMove);
-                canvas.removeEventListener('pointerup', handlePointerUp);
-                canvas.removeEventListener('pointercancel', handlePointerCancel);
-
-                dcOverlay.clear();
-            }
-        }
-
-        canvas.addEventListener('pointerdown', handlePointerDown);
-
-        return () => {
-            canvas.removeEventListener('pointerdown', handlePointerDown);
+            };
         };
     };
-} */
+}

@@ -73,3 +73,99 @@ export function startDrawingTrapezoid(dc, dcOverlay) {
         });
     };
 }
+
+export function startDrawingTrapezoidTouch(dc, dcOverlay) {
+    const { canvas } = dcOverlay;
+
+    return () => {
+        let startTouch = null;
+
+        const handleTouchMove = (e) => {
+            e.preventDefault();
+
+            const touches = e.changedTouches;
+
+            if (startTouch && touches.length === 1) {
+                const touch = touches[0];
+
+                dcOverlay.clear();
+
+                dcOverlay.rectangle({
+                    x1: startTouch.offsetX,
+                    y1: startTouch.offsetY,
+                    x2: touch.offsetX,
+                    y2: touch.offsetY,
+                    color: 'grey',
+                    thickness: 1,
+                });
+
+                const x = (touch.offsetX + startTouch.offsetX) / 2;
+                const y = Math.max(startTouch.offsetY, touch.offsetY);
+                const bottomLength = Math.abs(touch.offsetX - startTouch.offsetX);
+                const height = Math.abs(touch.offsetY - startTouch.offsetY);
+
+                dcOverlay.trapezoid({
+                    x,
+                    y,
+                    bottomLength,
+                    topLength: bottomLength,
+                    height,
+                    color: 'grey',
+                    thickness: 1,
+                });
+            }
+        };
+
+        const handleTouchEnd = (e) => {
+            e.preventDefault();
+
+            const touches = e.changedTouches;
+
+            if (startTouch && touches.length === 1) {
+                const touch = touches[0];
+
+                dcOverlay.clear();
+
+                dcOverlay.rectangle({
+                    x1: startTouch.offsetX,
+                    y1: startTouch.offsetY,
+                    x2: touch.offsetX,
+                    y2: touch.offsetY,
+                    color: 'grey',
+                    thickness: 1,
+                });
+
+                const x = (touch.offsetX + startTouch.offsetX) / 2;
+                const y = Math.max(startTouch.offsetY, touch.offsetY);
+                const bottomLength = Math.abs(touch.offsetX - startTouch.offsetX);
+                const height = Math.abs(touch.offsetY - startTouch.offsetY);
+                const topLength = bottomLength;
+
+                dc.trapezoid({
+                    x,
+                    y,
+                    bottomLength,
+                    topLength,
+                    height,
+                    color: getColors(),
+                });
+
+                startTouch = null;
+
+                window.removeEventListener('touchmove', handleTouchMove);
+                window.removeEventListener('touchend', handleTouchEnd);
+            }
+        };
+
+        canvas.addEventListener('touchstart', (e) => {
+            const touches = e.changedTouches;
+
+            if (touches.length === 1) {
+                startTouch = touches[0];
+
+                window.addEventListener('touchmove', handleTouchMove);
+                window.addEventListener('touchend', handleTouchEnd);
+            }
+        });
+    };
+}

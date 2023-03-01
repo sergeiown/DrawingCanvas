@@ -29,22 +29,22 @@ export default class DrawingCanvas {
         this.ctx.clearRect(0, 0, this.width, this.height);
     }
 
-    /*     saveAsPng() {
+    saveAsPngTouch() {
         const link = document.createElement('a');
-        const fileName = new Date().toLocaleString('ukr').replace(/[^\d]/g, '-');
+        const fileName = new Date().toLocaleString('ukr').replace(/[^\d]/g, '_');
         console.log(fileName);
 
         link.href = this.canvas.toDataURL('image/png');
-        link.download = `image-${fileName}.png`;
+        link.download = `image__${fileName}.png`;
 
         document.body.appendChild(link);
         link.click();
 
         document.body.removeChild(link);
-    } */
+    }
 
     async saveAsPng() {
-        const fileName = `image-${new Date().toLocaleString('ukr').replace(/[^\d]/g, '-')}`;
+        const fileName = `image__${new Date().toLocaleString('ukr').replace(/[^\d]/g, '_')}`;
 
         try {
             const handle = await window.showSaveFilePicker({

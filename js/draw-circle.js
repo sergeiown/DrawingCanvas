@@ -41,26 +41,25 @@ export function startDrawingCircle(dc, dcOverlay) {
     };
 }
 
-/* export function startDrawingCircle(dc, dcOverlay) {
+export function startDrawingCircleTouch(dc, dcOverlay) {
     const { canvas } = dcOverlay;
 
     return () => {
-        function handlePointerDown(e1) {
-            canvas.setPointerCapture(e1.pointerId);
+        canvas.addEventListener('touchstart', (e1) => {
+            const touch = e1.touches[0];
+            const startX = touch.pageX - touch.target.offsetLeft;
+            const startY = touch.pageY - touch.target.offsetTop;
 
-            canvas.addEventListener('pointermove', handlePointerMove);
-            canvas.addEventListener('pointerup', handlePointerUp);
-            canvas.addEventListener('pointercancel', handlePointerCancel);
-
-            const startX = e1.offsetX;
-            const startY = e1.offsetY;
-
-            function handlePointerMove(e2) {
-                const dx = e2.offsetX - startX;
-                const dy = e2.offsetY - startY;
+            canvas.addEventListener('touchmove', (e2) => {
+                e2.preventDefault();
+                const touch = e2.touches[0];
+                const endX = touch.pageX - touch.target.offsetLeft;
+                const endY = touch.pageY - touch.target.offsetTop;
+                const dx = endX - startX;
+                const dy = endY - startY;
                 const radius = Math.sqrt(dx ** 2 + dy ** 2);
-                dcOverlay.clear();
 
+                dcOverlay.clear();
                 dcOverlay.circle({
                     x: startX,
                     y: startY,
@@ -68,40 +67,24 @@ export function startDrawingCircle(dc, dcOverlay) {
                     color: 'grey',
                     thickness: 1,
                 });
-            }
+            });
 
-            function handlePointerUp(e2) {
-                canvas.removeEventListener('pointermove', handlePointerMove);
-                canvas.removeEventListener('pointerup', handlePointerUp);
-                canvas.removeEventListener('pointercancel', handlePointerCancel);
-
-                const dx = e2.offsetX - startX;
-                const dy = e2.offsetY - startY;
+            canvas.addEventListener('touchend', (e2) => {
+                const touch = e2.changedTouches[0];
+                const endX = touch.pageX - touch.target.offsetLeft;
+                const endY = touch.pageY - touch.target.offsetTop;
+                const dx = endX - startX;
+                const dy = endY - startY;
                 const radius = Math.sqrt(dx ** 2 + dy ** 2);
 
                 dcOverlay.clear();
-
                 dc.circle({
                     x: startX,
                     y: startY,
                     radius,
                     color: getColors(),
                 });
-            }
-
-            function handlePointerCancel(e2) {
-                canvas.removeEventListener('pointermove', handlePointerMove);
-                canvas.removeEventListener('pointerup', handlePointerUp);
-                canvas.removeEventListener('pointercancel', handlePointerCancel);
-
-                dcOverlay.clear();
-            }
-        }
-
-        canvas.addEventListener('pointerdown', handlePointerDown);
-
-        return () => {
-            canvas.removeEventListener('pointerdown', handlePointerDown);
-        };
+            });
+        });
     };
-} */
+}

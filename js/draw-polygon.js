@@ -64,12 +64,10 @@ export function startDrawingPolygon(dc, dcOverlay) {
     };
 }
 
-/* export function startDrawingPolygon(dc, dcOverlay) {
+export function startDrawingPolygonTouch(dc, dcOverlay) {
     const { canvas } = dcOverlay;
 
     const points = [];
-
-    const doubleClickThreshold = 10;
 
     function draw() {
         dcOverlay.clear();
@@ -94,45 +92,39 @@ export function startDrawingPolygon(dc, dcOverlay) {
 
     return () => {
         dcOverlay.fillText('Notice:', 10, 70);
-        dcOverlay.fillText('To draw a polygon, tap and hold a point until', 10, 100);
-        dcOverlay.fillText("it's in the desired location.", 10, 130);
-        dcOverlay.fillText('If the point is clicked and released, the final', 10, 160);
-        dcOverlay.fillText('shape is drawn.', 10, 190);
+        dcOverlay.fillText('use a double-tap to complete the shape', 10, 100);
 
-        canvas.onpointerdown = (e1) => {
-            const point = { x: e1.offsetX, y: e1.offsetY };
+        canvas.ontouchstart = (e1) => {
+            e1.preventDefault();
+            const touch = e1.touches[0];
+            const point = { x: touch.pageX - canvas.offsetLeft, y: touch.pageY - canvas.offsetTop };
             points.push(point);
 
             draw();
 
-            canvas.onpointermove = (e2) => {
-                point.x = e2.offsetX;
-                point.y = e2.offsetY;
+            canvas.ontouchmove = (e2) => {
+                e2.preventDefault();
+                const touch = e2.touches[0];
+                point.x = touch.pageX - canvas.offsetLeft;
+                point.y = touch.pageY - canvas.offsetTop;
 
                 draw();
             };
 
-            canvas.onpointerup = (e2) => {
-                canvas.onpointermove = null;
-                canvas.onpointerup = null;
+            canvas.ontouchend = (e2) => {
+                e2.preventDefault();
+                canvas.ontouchmove = null;
+                canvas.ontouchend = null;
 
-                const lastPoint = points[points.length - 1];
-
-                const distance = Math.sqrt((lastPoint.x - e1.offsetX) ** 2 + (lastPoint.y - e1.offsetY) ** 2);
-
-                if (points.length > 2 && distance < doubleClickThreshold) {
-                    dcOverlay.clear();
-
-                    if (points.length >= 3) {
-                        dc.polygon({
-                            points,
-                            color: getColors(),
-                        });
-                    }
-
-                    points.length = 0;
+                if (points.length >= 3) {
+                    dc.polygon({
+                        points,
+                        color: getColors(),
+                    });
                 }
+
+                points.length = 0;
             };
         };
     };
-} */
+}
