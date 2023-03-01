@@ -15,6 +15,8 @@ export default class ToolBar {
         input.type = 'color';
         input.id = 'colorPicker';
         input.value = '#ffff00';
+        input.style.width = '85px';
+        input.style.height = '30px';
         li.appendChild(input);
 
         this.bar.appendChild(li);
@@ -23,7 +25,10 @@ export default class ToolBar {
             if (Object.hasOwnProperty.call(buttonDescriptors, label)) {
                 const { handler } = buttonDescriptors[label];
                 const li = document.createElement('li');
+
                 const btn = document.createElement('button');
+                btn.style.width = '85px';
+                btn.style.height = '30px';
 
                 btn.innerText = label;
                 btn.onclick = handler;
