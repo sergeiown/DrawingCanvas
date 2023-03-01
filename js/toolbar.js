@@ -31,7 +31,7 @@ export default class ToolBar {
                 btn.style.height = '30px';
 
                 btn.innerText = label;
-                btn.onclick = handler;
+                btn.onmousedown = handler;
                 this.bar.appendChild(li).append(btn);
             }
         }
