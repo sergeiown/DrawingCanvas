@@ -14,4 +14,6 @@ Below is the structure of the application:
 ##
 Here is an example of a drawing created using Drawing Canvas:
 
-![image](https://user-images.githubusercontent.com/112722061/222016726-ead76a40-e809-469e-9f7f-74b91539d659.png)
+| Desktop Drawing Canvas                   | Mobile Drawing Canvas                             |
+| ---------------------------------------- | ------------------------------------------------- |
+| ![image](https://github.com/sergeiown/DrawingCanvas/assets/112722061/a2f16ed9-0165-4538-a757-266c6d202564) | ![image](https://github.com/sergeiown/DrawingCanvas/assets/112722061/9a3b8de1-0bd8-409c-a651-6be1c4bf629a) |
