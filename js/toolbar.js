@@ -48,6 +48,14 @@ export default class ToolBar {
 
                 btn.innerText = label;
                 btn.onclick = handler;
+
+                if (
+                    label === Object.keys(buttonDescriptors).slice(-2)[0] ||
+                    label === Object.keys(buttonDescriptors).slice(-1)[0]
+                ) {
+                    btn.style.fontWeight = 'bold';
+                }
+
                 this.bar.appendChild(li).append(btn);
             }
         }
