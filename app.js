@@ -7,14 +7,15 @@ import { startDrawingRectangle } from './js/draw-rectangle.js';
 import { startDrawingCircle } from './js/draw-circle.js';
 import { startDrawingPolygon } from './js/draw-polygon.js';
 import { startDrawingCurve } from './js/draw-curve.js';
+import { startErasing } from './js/erase.js';
 
 if ('ontouchstart' in window) {
     const dc = new DrawingCanvas(width, height, bgColor);
     const dcOverlay = new DrawingCanvas(width, height);
     const toolBar = new ToolBar({
-        Clear: { handler: () => dc.clear() },
         Line: { handler: startDrawingLineTouch(dc, dcOverlay) },
         SaveImage: { handler: () => dc.saveAsPngTouch() },
+        NewImage: { handler: () => dc.clear() },
     });
 
     toolBar.appendTo('._container');
@@ -30,14 +31,15 @@ if ('ontouchstart' in window) {
     const dc = new DrawingCanvas(width, height, bgColor);
     const dcOverlay = new DrawingCanvas(width, height);
     const toolBar = new ToolBar({
-        Clear: { handler: () => dc.clear() },
         Curve: { handler: startDrawingCurve(dc, dcOverlay) },
         Line: { handler: startDrawingLine(dc, dcOverlay) },
         Circle: { handler: startDrawingCircle(dc, dcOverlay) },
         Rectangle: { handler: startDrawingRectangle(dc, dcOverlay) },
         Trapezoid: { handler: startDrawingTrapezoid(dc, dcOverlay) },
         Poligon: { handler: startDrawingPolygon(dc, dcOverlay) },
+        Eraser: { handler: startErasing(dc, dcOverlay) },
         SaveImage: { handler: () => dc.saveAsPng() },
+        NewImage: { handler: () => dc.clear() },
     });
 
     toolBar.appendTo('._container');
