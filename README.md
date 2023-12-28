@@ -9,7 +9,7 @@
 - [x]  The app was created using only vanilla JavaScript, which makes it easy to learn and modify.
 ## Structure of the application:
 
-![image](https://user-images.githubusercontent.com/112722061/222014467-e78836a3-2abe-44b1-8323-cd1879623a1b.png)
+![image](https://github.com/sergeiown/DrawingCanvas/assets/112722061/c1d641d4-2b49-451e-aa6c-a399cf1a5c2c)
 
 ## Appearance of the Drawing Canvas:
 
