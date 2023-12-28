@@ -17,6 +17,7 @@ export default class ToolBar {
         input.value = '#ffff00';
         input.style.width = '85px';
         input.style.height = '30px';
+        input.style.cursor = 'pointer';
         input.title = 'Choose color';
         li.appendChild(input);
         this.bar.appendChild(li);
@@ -30,6 +31,7 @@ export default class ToolBar {
         inputRange.id = 'pen-range';
         inputRange.style.width = '85px';
         inputRange.style.height = '30px';
+        inputRange.style.cursor = 'pointer';
         inputRange.title = 'Choose thickness';
         liRange.appendChild(inputRange);
         this.bar.appendChild(liRange);
@@ -42,6 +44,7 @@ export default class ToolBar {
                 const btn = document.createElement('button');
                 btn.style.width = '85px';
                 btn.style.height = '30px';
+                btn.style.cursor = 'pointer';
 
                 btn.innerText = label;
                 btn.onclick = handler;
