@@ -42,34 +42,41 @@ function startDrawingCurveTouch(dc, dcOverlay) {
     const { canvas } = dcOverlay;
     let isDrawing = false;
 
-    return () => {
-        canvas.ontouchstart = (e1) => {
-            const canvasRect = canvas.getBoundingClientRect();
-            isDrawing = true;
-            dc.ctx.beginPath();
+    const handleTouchStart = (e1) => {
+        const canvasRect = canvas.getBoundingClientRect();
+        isDrawing = true;
+        dc.ctx.beginPath();
+        dc.curve({
+            x1: e1.touches[0].clientX - canvasRect.left,
+            y1: e1.touches[0].clientY - canvasRect.top,
+            thickness: getThickness(),
+            color: 'grey',
+        });
+
+        const handleTouchMove = (e2) => {
+            if (!isDrawing) return;
             dc.curve({
-                x1: e1.touches[0].clientX - canvasRect.left,
-                y1: e1.touches[0].clientY - canvasRect.top,
+                x1: e2.touches[0].clientX - canvasRect.left,
+                y1: e2.touches[0].clientY - canvasRect.top,
                 thickness: getThickness(),
-                color: 'grey',
+                color: getColors(),
             });
-
-            window.ontouchmove = (e2) => {
-                if (!isDrawing) return;
-                dc.curve({
-                    x1: e2.touches[0].clientX - canvasRect.left,
-                    y1: e2.touches[0].clientY - canvasRect.top,
-                    thickness: getThickness(),
-                    color: getColors(),
-                });
-            };
-
-            window.ontouchend = () => {
-                isDrawing = false;
-                window.ontouchmove = null;
-                window.ontouchend = null;
-                dc.ctx.beginPath();
-            };
         };
+
+        const handleTouchEnd = () => {
+            isDrawing = false;
+            canvas.removeEventListener('touchmove', handleTouchMove);
+            canvas.removeEventListener('touchend', handleTouchEnd);
+            dc.ctx.beginPath();
+        };
+
+        canvas.addEventListener('touchmove', handleTouchMove);
+        canvas.addEventListener('touchend', handleTouchEnd);
+    };
+
+    canvas.addEventListener('touchstart', handleTouchStart);
+
+    return () => {
+        canvas.removeEventListener('touchstart', handleTouchStart);
     };
 }
