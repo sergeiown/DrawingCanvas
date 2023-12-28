@@ -1,4 +1,4 @@
-import { canvasColor } from './config.js';
+import { getCanvasColor } from './color-picker.js';
 import { getThickness } from './color-picker.js';
 export { startErasing };
 
@@ -19,7 +19,7 @@ function startErasing(dc, dcOverlay) {
                 x1: e1.clientX - canvasRect.left,
                 y1: e1.clientY - canvasRect.top,
                 thickness: getThickness(),
-                color: canvasColor,
+                color: getCanvasColor(),
             });
 
             canvas.onmousemove = (e2) => {
@@ -29,14 +29,14 @@ function startErasing(dc, dcOverlay) {
                     x1: e2.clientX - canvasRect.left,
                     y1: e2.clientY - canvasRect.top,
                     thickness: getThickness(),
-                    color: canvasColor,
+                    color: getCanvasColor(),
                 });
 
                 dcOverlay.curve({
                     x1: e2.clientX - canvasRect.left,
                     y1: e2.clientY - canvasRect.top,
                     thickness: getThickness(),
-                    color: canvasColor,
+                    color: getCanvasColor(),
                 });
             };
 

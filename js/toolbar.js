@@ -1,3 +1,6 @@
+import { canvasColor, setCanvasColor } from './config.js';
+import { getCanvasColor } from './color-picker.js';
+
 export default class ToolBar {
     constructor(buttonDescriptors) {
         this.bar = document.createElement('ul');
@@ -8,7 +11,32 @@ export default class ToolBar {
         this.bar.style.listStyle = 'none';
         this.bar.style.padding = '10px 0 0 0';
         this.bar.style.margin = '0';
-        this.bar.style.background = '#2a2c35';
+        this.bar.style.background = canvasColor;
+        this.bar.style.userSelect = 'none';
+
+        const liCanvas = document.createElement('li');
+        const inputCanvas = document.createElement('input');
+        inputCanvas.type = 'color';
+        inputCanvas.id = 'canvasColorPicker';
+        inputCanvas.value = '#2a2c35';
+        inputCanvas.style.width = '85px';
+        inputCanvas.style.height = '30px';
+        inputCanvas.style.cursor = 'pointer';
+        inputCanvas.title = 'Choose a canvas color';
+        liCanvas.appendChild(inputCanvas);
+        this.bar.appendChild(liCanvas);
+
+        document.addEventListener('DOMContentLoaded', function () {
+            const canvasColorPicker = document.querySelector('#canvasColorPicker');
+            if (canvasColorPicker) {
+                canvasColorPicker.addEventListener('input', function () {
+                    let newCanvasColor = getCanvasColor();
+                    setCanvasColor(newCanvasColor);
+                });
+            } else {
+                console.error('Element with ID "canvasColorPicker" not found.');
+            }
+        });
 
         const li = document.createElement('li');
         const input = document.createElement('input');
@@ -18,7 +46,7 @@ export default class ToolBar {
         input.style.width = '85px';
         input.style.height = '30px';
         input.style.cursor = 'pointer';
-        input.title = 'Choose color';
+        input.title = 'Choose a tool color';
         li.appendChild(input);
         this.bar.appendChild(li);
 

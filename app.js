@@ -1,4 +1,4 @@
-import { canvasWidth as width, canvasHeight as height, canvasColor as bgColor } from './js/config.js';
+import { canvasWidth as width, canvasHeight as height, canvasColor as bgColor, setCanvasColor } from './js/config.js';
 import DrawingCanvas from './js/dc/dc.js';
 import ToolBar from './js/toolbar.js';
 import { startDrawingLine, startDrawingLineTouch } from './js/draw-line.js';
@@ -15,7 +15,12 @@ if ('ontouchstart' in window) {
     const toolBar = new ToolBar({
         Line: { handler: startDrawingLineTouch(dc, dcOverlay) },
         SaveImage: { handler: () => dc.saveAsPngTouch() },
-        NewImage: { handler: () => dc.clear() },
+        NewImage: {
+            handler: () => {
+                dc.clear();
+                setCanvasColor('#2a2c35');
+            },
+        },
     });
 
     toolBar.appendTo('._container');
@@ -39,7 +44,12 @@ if ('ontouchstart' in window) {
         Poligon: { handler: startDrawingPolygon(dc, dcOverlay) },
         Eraser: { handler: startErasing(dc, dcOverlay) },
         SaveImage: { handler: () => dc.saveAsPng() },
-        NewImage: { handler: () => dc.clear() },
+        NewImage: {
+            handler: () => {
+                dc.clear();
+                setCanvasColor('#2a2c35');
+            },
+        },
     });
 
     toolBar.appendTo('._container');
