@@ -148,6 +148,16 @@ export default class DrawingCanvas {
         this.ctx.stroke();
     }
 
+    curve({ x1, y1, thickness, color }) {
+        this.ctx.lineWidth = thickness;
+        this.ctx.lineCap = 'round';
+        this.ctx.strokeStyle = color;
+        this.ctx.lineTo(x1, y1);
+        this.ctx.stroke();
+        this.ctx.beginPath();
+        this.ctx.moveTo(x1, y1);
+    }
+
     fillText(text, x, y) {
         this.ctx.font = '16px Arial';
         this.ctx.fillStyle = 'lightblue';

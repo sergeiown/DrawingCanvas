@@ -6,6 +6,7 @@ import { startDrawingTrapezoid } from './js/draw-trapezoid.js';
 import { startDrawingRectangle } from './js/draw-rectangle.js';
 import { startDrawingCircle } from './js/draw-circle.js';
 import { startDrawingPolygon } from './js/draw-polygon.js';
+import { startDrawingCurve } from './js/draw-curve.js';
 
 if ('ontouchstart' in window) {
     const dc = new DrawingCanvas(width, height, bgColor);
@@ -30,6 +31,7 @@ if ('ontouchstart' in window) {
     const dcOverlay = new DrawingCanvas(width, height);
     const toolBar = new ToolBar({
         Clear: { handler: () => dc.clear() },
+        Curve: { handler: startDrawingCurve(dc, dcOverlay) },
         Line: { handler: startDrawingLine(dc, dcOverlay) },
         Circle: { handler: startDrawingCircle(dc, dcOverlay) },
         Rectangle: { handler: startDrawingRectangle(dc, dcOverlay) },

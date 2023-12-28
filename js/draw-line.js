@@ -1,4 +1,5 @@
 import { getColors } from './color-picker.js';
+import { getThickness } from './color-picker.js';
 
 export function startDrawingLine(dc, dcOverlay) {
     const { canvas } = dcOverlay;
@@ -13,7 +14,7 @@ export function startDrawingLine(dc, dcOverlay) {
                     y1: e1.offsetY,
                     x2: e2.offsetX,
                     y2: e2.offsetY,
-                    thickness: 1,
+                    thickness: getThickness(),
                     color: 'grey',
                 });
             };
@@ -27,7 +28,7 @@ export function startDrawingLine(dc, dcOverlay) {
                     y1: e1.offsetY,
                     x2: e2.offsetX,
                     y2: e2.offsetY,
-                    thickness: 3,
+                    thickness: getThickness(),
                     color: getColors(),
                 });
 
@@ -60,7 +61,7 @@ export function startDrawingLineTouch(dc, dcOverlay) {
                     y1: startY,
                     x2: currentX,
                     y2: currentY,
-                    thickness: 1,
+                    thickness: getThickness(),
                     color: 'grey',
                 });
             });
@@ -77,7 +78,7 @@ export function startDrawingLineTouch(dc, dcOverlay) {
                     y1: startY,
                     x2: endX,
                     y2: endY,
-                    thickness: 3,
+                    thickness: getThickness(),
                     color: getColors(),
                 });
 
