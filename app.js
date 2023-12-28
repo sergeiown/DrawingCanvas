@@ -6,14 +6,13 @@ import { startDrawingTrapezoid } from './js/draw-trapezoid.js';
 import { startDrawingRectangle } from './js/draw-rectangle.js';
 import { startDrawingCircle } from './js/draw-circle.js';
 import { startDrawingPolygon } from './js/draw-polygon.js';
-import { startDrawingCurve, startDrawingCurveTouch } from './js/draw-curve.js';
+import { startDrawingCurve } from './js/draw-curve.js';
 
 if ('ontouchstart' in window) {
     const dc = new DrawingCanvas(width, height, bgColor);
     const dcOverlay = new DrawingCanvas(width, height);
     const toolBar = new ToolBar({
         Clear: { handler: () => dc.clear() },
-        Curve: { handler: startDrawingCurveTouch(dc, dcOverlay) },
         Line: { handler: startDrawingLineTouch(dc, dcOverlay) },
         SaveImage: { handler: () => dc.saveAsPngTouch() },
     });
