@@ -32,6 +32,10 @@ if ('ontouchstart' in window) {
     dcOverlay.fillText('The full functionality of the application', 50, 100);
     dcOverlay.fillText('is currently only available on devices', 50, 130);
     dcOverlay.fillText('without a touch screen', 50, 160);
+
+    window.addEventListener('orientationchange', () => {
+        location.href = location.href;
+    });
 } else {
     const dc = new DrawingCanvas(width, height, bgColor);
     const dcOverlay = new DrawingCanvas(width, height);
