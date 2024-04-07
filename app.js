@@ -28,10 +28,10 @@ if ('ontouchstart' in window) {
     dcOverlay.appendTo('._container');
     dcOverlay.canvas.style.marginTop = -height + 'px';
 
-    dcOverlay.fillText('Notice:', 10, 70);
-    dcOverlay.fillText('The full functionality of the application', 10, 100);
-    dcOverlay.fillText('is currently only available on devices', 10, 130);
-    dcOverlay.fillText('without a touch screen', 10, 160);
+    dcOverlay.fillText('Notice:', 50, 70);
+    dcOverlay.fillText('The full functionality of the application', 50, 100);
+    dcOverlay.fillText('is currently only available on devices', 50, 130);
+    dcOverlay.fillText('without a touch screen', 50, 160);
 } else {
     const dc = new DrawingCanvas(width, height, bgColor);
     const dcOverlay = new DrawingCanvas(width, height);
