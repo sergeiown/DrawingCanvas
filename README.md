@@ -9,10 +9,10 @@
 - [x]  The app was created using only vanilla JavaScript, which makes it easy to learn and modify.
 ## Structure of the application:
 
-![image](https://github.com/sergeiown/DrawingCanvas/assets/112722061/c1d641d4-2b49-451e-aa6c-a399cf1a5c2c)
+![image](https://github.com/sergeiown/DrawingCanvas/assets/112722061/ac9af9e3-3866-487b-b1a7-b6654713e4ef)
 
 ## Appearance of the Drawing Canvas:
 
 | Desktop Drawing Canvas                   | Mobile Drawing Canvas                             |
 | ---------------------------------------- | ------------------------------------------------- |
-| ![image](https://github.com/sergeiown/DrawingCanvas/assets/112722061/87c823ef-b956-423a-a02b-566bed47f8ad) | ![image](https://github.com/sergeiown/DrawingCanvas/assets/112722061/9a3b8de1-0bd8-409c-a651-6be1c4bf629a) |
+| ![image](https://github.com/sergeiown/DrawingCanvas/assets/112722061/c35b2316-38ee-4e4a-8a59-f094bea6981c) | ![image](https://github.com/sergeiown/DrawingCanvas/assets/112722061/9a3b8de1-0bd8-409c-a651-6be1c4bf629a) |
